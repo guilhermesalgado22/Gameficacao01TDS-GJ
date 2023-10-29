@@ -1,0 +1,64 @@
+@page
+@model Projetos.API.Pages.Projetos.Index
+
+@{
+    ViewData["Title"] = "Lista de Projetos";
+}
+
+<form method="get">
+    <input type="text" asp-for="FiltroNome" placeholder="Filtrar por nome do projeto" />
+    <select asp-for="Ordenacao">
+        <option value="NomeAsc">Nome (A-Z)</option>
+        <option value="DataInicioDesc">Data de Início (mais recente primeiro)</option>
+    </select>
+    <button type="submit" class="btn btn-primary">Aplicar</button>
+</form>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>@ViewData["Title"]</h1>
+        </div>
+        <div class="col-md-4 text-end">
+            <a asp-page="./Criar" class="btn btn-primary">Criar novo Projeto</a>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="mt-4">
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.ProjetoList[0].IdProjeto)</th>
+                    <th>@Html.DisplayNameFor(model => model.ProjetoList[0].Nome)</th>
+                    <th>@Html.DisplayNameFor(model => model.ProjetoList[0].Descricao)</th>
+                    <th>@Html.DisplayNameFor(model => model.ProjetoList[0].DataInicio)</th>
+                    <th>@Html.DisplayNameFor(model => model.ProjetoList[0].DataConclusaoPrevista)</th>
+                    <th>@Html.DisplayNameFor(model => model.ProjetoList[0].Status)</th>
+                    <th>Operações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var projeto in Model.ProjetoList)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(model => projeto.IdProjeto)</td>
+                        <td>@Html.DisplayFor(model => projeto.Nome)</td>
+                        <td>@Html.DisplayFor(model => projeto.Descricao)</td>
+                        <td>@Html.DisplayFor(model => projeto.DataInicio)</td>
+                        <td>@Html.DisplayFor(model => projeto.DataConclusaoPrevista)</td>
+                        <td>@Html.DisplayFor(model => projeto.Status)</td>
+                        <td>
+                            <a asp-page="./Editar" asp-route-id="@projeto.IdProjeto"
+                                class="btn btn-warning btn-sm me-2">Editar</a>
+                            <a asp-page="./Visualizar" asp-route-id="@projeto.IdProjeto"
+                                class="btn btn-info btn-sm me-2">Visualizar</a>
+                            <a asp-page="./Deletar" asp-route-id="@projeto.IdProjeto" class="btn btn-danger btn-sm">Remover</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+@page
+@model Projetos.API.Pages.Index
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container mt-5">
+    <h2>@ViewData["Title"]</h2>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Total de Projetos</h5>
+                    <p class="card-text">@Model.TotalProjetos</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Total de Equipes</h5>
+                    <p class="card-text">@Model.TotalEquipes</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Total de Membros</h5>
+                    <p class="card-text">@Model.TotalMembros</p>
+                </div>
+            </div>
+        </div>
+        <!-- Você pode continuar com essa estrutura para outros itens, como sprints, tarefas, etc. -->
+    </div>
+</div>
